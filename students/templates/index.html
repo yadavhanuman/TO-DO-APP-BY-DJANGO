@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body style="background-color: lightgreen;">
+  <div>
+  <header>
+    <form  method="POST" align="center" style="margin-top: 20px;">
+        {% csrf_token %}
+        {{ forms.as_p }}
+
+        <input type="submit" name="submit"
+         style="background-color: blue; color: white; border-radius: 15px; width: 100px;">
+
+    </form>
+  
+  </header>
+</div>
+<div style="margin-left: 20px; margin-right: 30px;">
+  <div style="background-color: yellowgreen; color: blue; width: 190px;"><h3>Your ToDo List</h3></div>
+  
+  
+  {% for i in data %}
+  <table border="2px" align="center" width="100%"
+   style="text-align: center; border-color: blueviolet; border-collapse: collapse;"> 
+    <th>ID</th>
+    <th>Title</th>
+    <th>Tags</th>
+    <th>Venue</th>
+    <th>Due Date</th>
+    <th>Description</th>
+    <th>Oprations</th>
+
+  <tr>
+  <td><h4>{{i.id}}</h4></td>
+  <td><div>{{i.title}}</div></td>
+  <td><div>{{i.tags}}</div></td>
+  <td><div>{{ i.venue }}</div></td>
+  <td><div>{{ i.slot }}</div></td>
+  <td><div>{{ i.description }}</div></td>
+  <td><div><a href="{% url 'delete' i.id %}">Remove Appointment</a></div></td>
+</tr>
+</table>
+  {% endfor %}
+
+</div>
+  
+  
+</body>
+</html>
